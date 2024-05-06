@@ -48,9 +48,6 @@ metadata = metamodule.metadata
 if sessions is None:
     sessions = metadata.keys()
 
-# -- Currently hardcoded in the metadata file. Better if read from the HDF5 data files. --
-STIM_DURATION = metamodule.stim_duration
-
 # -- For each session, read data from HDF5 file and create an NWB file --
 for session in sessions:
     print(f'Converting session {session}')
@@ -88,15 +85,28 @@ for session in sessions:
             print('Storing trial information...')
             trial_start_time = datafile['stim_data']['stim_on_time'][()]
             stim_frequency = datafile['stim_data']['stim_Hz'][()]
-
+            stim_duration_str = datafile['stim_data'].attrs['stim_duration']
+            if ' ms' in stim_duration_str:
+                stim_duration = 1e-3*float(stim_duration_str.replace(' ms','')) # In seconds
+            elif ' s' in stim_duration_str:
+                stim_duration = float(stim_duration_str.replace(' s','')) # In seconds
+            else:
+                raise ValueError('Units of stimulus duration are not valid.')
+            stim_amplitude_str = datafile['stim_data'].attrs['stim_amp']
+            if ' dB' in stim_amplitude_str:
+                stim_amplitude = float(stim_amplitude_str.replace(' dB','')) # In seconds
+            
             nwbfile.add_trial_column(name='stim_frequency',
                                      description='Stimulus frequency (Hz)')
+            nwbfile.add_trial_column(name='stim_amplitude',
+                                     description='Stimulus amplitude (dB)')
             # NOTE: Looping through >5000 trials takes a long time,
             #       but pynwb doesn't seem to have a faster way.
             for indt, start_time in enumerate(trial_start_time):
                 nwbfile.add_trial(start_time = start_time,
-                                  stop_time = start_time+STIM_DURATION,
-                                  stim_frequency = stim_frequency[indt])
+                                  stop_time = start_time+stim_duration,
+                                  stim_frequency = stim_frequency[indt],
+                                  stim_amplitude = stim_amplitude)
 
     # -- Add spike-times information --
     if ADD_SPIKES:
@@ -120,13 +130,16 @@ for session in sessions:
             pupil = datafile['behavioral_data']['pupil_trace'][()]
             running = datafile['behavioral_data']['run_trace'][()]
             whisking = datafile['behavioral_data']['whisk_trace'][()]
+            pupil_units = datafile['behavioral_data'].attrs['pupil_trace_units']
+            running_units = datafile['behavioral_data'].attrs['run_trace_units']
+            whisking_units = datafile['behavioral_data'].attrs['whisk_trace_units']
             
         pupil_diameter = pynwb.base.TimeSeries(
             name = 'pupil_diameter',
             description = metamodule.pupil_description,
             timestamps = timestamps,
             data = pupil,
-            unit = metamodule.pupil_units
+            unit = pupil_units
         )
         pupil_tracking = pynwb.behavior.PupilTracking()
         pupil_tracking.add_timeseries(pupil_diameter)
@@ -137,7 +150,7 @@ for session in sessions:
             description = metamodule.running_description,
             timestamps = timestamps,
             data = running,
-            unit = metamodule.running_units
+            unit = running_units
         )
         behavior_module.add(running_speed)
         
@@ -146,7 +159,7 @@ for session in sessions:
             description=metamodule.whisking_description,
             timestamps = timestamps,
             data = whisking,
-            unit = metamodule.whisking_units
+            unit = whisking_units
         )
         behavior_module.add(whisking_trace)
     

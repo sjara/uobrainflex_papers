@@ -14,13 +14,9 @@ subject_species = 'Mus musculus'
 related_publications = 'doi:10.1101/2024.04.04.588209'
 keywords = ['auditory cortex', 'arousal', 'pupil', 'neuropixels', 'pure tones']
 
-stim_duration = 0.025  # Duration of the stimulus in seconds
 pupil_description = 'Pupil diameter extracted from the video'
-pupil_units = '???'
 running_description = 'Running speed measured by a rotary encoder on the wheel'
-running_units = '???'
 whisking_description = '???'
-whisking_units = '???'
 
 # NOTES about formatting subjects' sex and age
 # subject_sex: M, F or U (for unknown)
