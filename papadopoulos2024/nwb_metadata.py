@@ -16,7 +16,7 @@ keywords = ['auditory cortex', 'arousal', 'pupil', 'neuropixels', 'pure tones']
 
 pupil_description = 'Pupil diameter extracted from the video'
 running_description = 'Running speed measured by a rotary encoder on the wheel'
-whisking_description = '???'
+#whisking_description = '???'
 
 # NOTES about formatting subjects' sex and age
 # subject_sex: M, F or U (for unknown)

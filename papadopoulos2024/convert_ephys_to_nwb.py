@@ -85,6 +85,9 @@ for session in sessions:
             print('Storing trial information...')
             trial_start_time = datafile['stim_data']['stim_on_time'][()]
             stim_frequency = datafile['stim_data']['stim_Hz'][()]
+            stim_amplitude_str = datafile['stim_data'].attrs['stim_amp']
+            if ' dB' in stim_amplitude_str:
+                stim_amplitude = float(stim_amplitude_str.replace(' dB','')) # In seconds
             stim_duration_str = datafile['stim_data'].attrs['stim_duration']
             if ' ms' in stim_duration_str:
                 stim_duration = 1e-3*float(stim_duration_str.replace(' ms','')) # In seconds
@@ -92,20 +95,23 @@ for session in sessions:
                 stim_duration = float(stim_duration_str.replace(' s','')) # In seconds
             else:
                 raise ValueError('Units of stimulus duration are not valid.')
-            stim_amplitude_str = datafile['stim_data'].attrs['stim_amp']
-            if ' dB' in stim_amplitude_str:
-                stim_amplitude = float(stim_amplitude_str.replace(' dB','')) # In seconds
+            # Append an estimated trial_stop_time for the last trial
+            trial_duration_estimate = np.median(np.diff(trial_start_time))
+            trial_stop_time = np.append(trial_start_time[1:], trial_start_time[-1]+trial_duration_estimate)
             
             nwbfile.add_trial_column(name='stim_frequency',
                                      description='Stimulus frequency (Hz)')
+            nwbfile.add_trial_column(name='stim_duration',
+                                     description='Stimulus duration (s)')
             nwbfile.add_trial_column(name='stim_amplitude',
                                      description='Stimulus amplitude (dB)')
             # NOTE: Looping through >5000 trials takes a long time,
             #       but pynwb doesn't seem to have a faster way.
             for indt, start_time in enumerate(trial_start_time):
                 nwbfile.add_trial(start_time = start_time,
-                                  stop_time = start_time+stim_duration,
+                                  stop_time = trial_stop_time[indt],
                                   stim_frequency = stim_frequency[indt],
+                                  stim_duration = stim_duration,
                                   stim_amplitude = stim_amplitude)
 
     # -- Add spike-times information --
@@ -119,7 +125,7 @@ for session in sessions:
 
     # -- Add pupil, running, and whisking data --
     if ADD_BEHAVIOR:
-        print('Storing behavior (pupil/running/whisking) information...')
+        print('Storing behavior (pupil/running) information...')
         behavior_module = nwbfile.create_processing_module(
             name = 'behavior', 
             description = 'Processed behavioral data'
@@ -133,7 +139,9 @@ for session in sessions:
             pupil_units = datafile['behavioral_data'].attrs['pupil_trace_units']
             running_units = datafile['behavioral_data'].attrs['run_trace_units']
             whisking_units = datafile['behavioral_data'].attrs['whisk_trace_units']
-            
+
+        # Based on https://pynwb.readthedocs.io/en/stable/tutorials/domain/plot_behavior.html
+        #                #pupiltracking-storing-continuous-eye-tracking-data-of-pupil-size
         pupil_diameter = pynwb.base.TimeSeries(
             name = 'pupil_diameter',
             description = metamodule.pupil_description,
@@ -141,8 +149,7 @@ for session in sessions:
             data = pupil,
             unit = pupil_units
         )
-        pupil_tracking = pynwb.behavior.PupilTracking()
-        pupil_tracking.add_timeseries(pupil_diameter)
+        pupil_tracking = pynwb.behavior.PupilTracking(time_series=pupil_diameter, name='PupilTracking')
         behavior_module.add(pupil_tracking)
         
         running_speed = pynwb.base.TimeSeries(
@@ -153,7 +160,8 @@ for session in sessions:
             unit = running_units
         )
         behavior_module.add(running_speed)
-        
+
+        '''
         whisking_trace = pynwb.base.TimeSeries(
             name='whisking_trace',
             description=metamodule.whisking_description,
@@ -162,7 +170,8 @@ for session in sessions:
             unit = whisking_units
         )
         behavior_module.add(whisking_trace)
-    
+        '''
+        
     # -- Save NWB file --
     if SAVE_NWB:
         nwb_filename = metadata[session]['filename'].replace('.h5', '.nwb')
