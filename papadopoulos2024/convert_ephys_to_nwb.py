@@ -14,7 +14,6 @@ import os
 import sys
 import pynwb
 from datetime import datetime
-import pytz
 import numpy as np
 import h5py
 import importlib
