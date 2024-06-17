@@ -6,7 +6,7 @@ Metadata for each ephys session used in Papadopoulos et al (2024).
 from datetime import datetime
 from dateutil import tz
 
-# path to data (on liap@picard)
+# path to preprocessed data on liap@picard (saved as .h5 files for each session)
 path_to_data = '/mnt/data0/liap/PostdocWork_Oregon/My_Projects/PROJ_VariabilityGainMod/data_files/analysis_SuData/processed_data_LP/'
 
 # Common values across sessions
@@ -16,6 +16,7 @@ institution = 'University of Oregon'
 session_description = 'Recordings from mouse auditory cortex during passive exposure to sounds'
 experiment_description = session_description
 subject_species = 'Mus musculus'
+subject_strain = 'C57/BJ6'
 related_publications = 'doi:10.1101/2024.04.04.588209'
 keywords = ['auditory cortex', 'arousal', 'pupil', 'neuropixels', 'pure tones']
 
@@ -25,6 +26,11 @@ running_description = 'Running speed measured by a rotary encoder on the wheel'
 # NOTES about formatting subjects' sex and age
 # subject_sex: M, F or U (for unknown)
 # subject_age: P90D (for 90 days old in ISO 8601 Duration format) or U (for unknown)
+
+# NOTES about session_start_time
+# the date and time for each session are taken from Su's original data folders located in:
+# /mnt/ion-nas2/Brain_Initiative/Neuropixels/Su_NP/subject_name/ (e.g. subject_name = LA3_session3)
+
 
 # Dictionary for metadata
 metadata = {}
@@ -38,10 +44,12 @@ metadata['LA3_session3']['path_to_data'] = path_to_data
 metadata['LA3_session3']['session_description'] = session_description
 metadata['LA3_session3']['session_start_time'] = datetime(2021, 12, 17, 13, 29, 25, tzinfo=tz.gettz('US/Pacific')).isoformat()
 metadata['LA3_session3']['subject_id'] = 'LA3'
-metadata['LA3_session3']['subject_age'] = 'U'
+metadata['LA3_session3']['Mouse_ID'] = '4863'
+metadata['LA3_session3']['subject_age'] = 'P129D'
 metadata['LA3_session3']['subject_description'] = 'mouse 1'
 metadata['LA3_session3']['subject_species'] = subject_species
-metadata['LA3_session3']['subject_sex'] = 'U'
+metadata['LA3_session3']['subject_strain'] = subject_strain
+metadata['LA3_session3']['subject_sex'] = 'M'
 metadata['LA3_session3']['experiment_description'] = experiment_description
 metadata['LA3_session3']['keywords'] = keywords
 metadata['LA3_session3']['experimenter'] = experimenter
@@ -59,10 +67,12 @@ metadata['LA8_session1']['path_to_data'] = path_to_data
 metadata['LA8_session1']['session_description'] = session_description
 metadata['LA8_session1']['session_start_time'] = datetime(2022, 3, 8, 17, 55, 37, tzinfo=tz.gettz('US/Pacific')).isoformat()
 metadata['LA8_session1']['subject_id'] = 'LA8'
-metadata['LA8_session1']['subject_age'] = 'U'
+metadata['LA8_session1']['Mouse_ID'] = '4885'
+metadata['LA8_session1']['subject_age'] = 'P138D'
 metadata['LA8_session1']['subject_description'] = 'mouse 2'
 metadata['LA8_session1']['subject_species'] = subject_species
-metadata['LA8_session1']['subject_sex'] = 'U'
+metadata['LA8_session1']['subject_strain'] = subject_strain
+metadata['LA8_session1']['subject_sex'] = 'F'
 metadata['LA8_session1']['experiment_description'] = experiment_description
 metadata['LA8_session1']['keywords'] = keywords
 metadata['LA8_session1']['experimenter'] = experimenter
@@ -80,16 +90,19 @@ metadata['LA8_session2']['path_to_data'] = path_to_data
 metadata['LA8_session2']['session_description'] = session_description
 metadata['LA8_session2']['session_start_time'] = datetime(2022, 3, 9, 17, 13, 32, tzinfo=tz.gettz('US/Pacific')).isoformat()
 metadata['LA8_session2']['subject_id'] = 'LA8'
-metadata['LA8_session2']['subject_age'] = 'U'
+metadata['LA8_session2']['Mouse_ID'] = '4885'
+metadata['LA8_session2']['subject_age'] = 'P139D'
 metadata['LA8_session2']['subject_description'] = 'mouse 2'
 metadata['LA8_session2']['subject_species'] = subject_species
-metadata['LA8_session2']['subject_sex'] = 'U'
+metadata['LA8_session2']['subject_strain'] = subject_strain
+metadata['LA8_session2']['subject_sex'] = 'F'
 metadata['LA8_session2']['experiment_description'] = experiment_description
 metadata['LA8_session2']['keywords'] = keywords
 metadata['LA8_session2']['experimenter'] = experimenter
 metadata['LA8_session2']['lab'] = lab
 metadata['LA8_session2']['institution'] = institution              
 metadata['LA8_session2']['related_publications'] = related_publications
+
 
 
 # LA9_SESSION1
@@ -101,10 +114,12 @@ metadata['LA9_session1']['path_to_data'] = path_to_data
 metadata['LA9_session1']['session_description'] = session_description
 metadata['LA9_session1']['session_start_time'] = datetime(2022, 3, 17, 15, 56, 52, tzinfo=tz.gettz('US/Pacific')).isoformat()
 metadata['LA9_session1']['subject_id'] = 'LA9'
-metadata['LA9_session1']['subject_age'] = 'U'
+metadata['LA9_session1']['Mouse_ID'] = '5285'
+metadata['LA9_session1']['subject_age'] = 'P100D'
 metadata['LA9_session1']['subject_description'] = 'mouse 3'
 metadata['LA9_session1']['subject_species'] = subject_species
-metadata['LA9_session1']['subject_sex'] = 'U'
+metadata['LA9_session1']['subject_strain'] = subject_strain
+metadata['LA9_session1']['subject_sex'] = 'M'
 metadata['LA9_session1']['experiment_description'] = experiment_description
 metadata['LA9_session1']['keywords'] = keywords
 metadata['LA9_session1']['experimenter'] = experimenter
@@ -122,10 +137,12 @@ metadata['LA9_session3']['path_to_data'] = path_to_data
 metadata['LA9_session3']['session_description'] = session_description
 metadata['LA9_session3']['session_start_time'] = datetime(2022, 3, 22, 14, 48, 18, tzinfo=tz.gettz('US/Pacific')).isoformat()
 metadata['LA9_session3']['subject_id'] = 'LA9'
-metadata['LA9_session3']['subject_age'] = 'U'
+metadata['LA9_session3']['Mouse_ID'] = '5285'
+metadata['LA9_session3']['subject_age'] = 'P105D'
 metadata['LA9_session3']['subject_description'] = 'mouse 3'
 metadata['LA9_session3']['subject_species'] = subject_species
-metadata['LA9_session3']['subject_sex'] = 'U'
+metadata['LA9_session3']['subject_strain'] = subject_strain
+metadata['LA9_session3']['subject_sex'] = 'M'
 metadata['LA9_session3']['experiment_description'] = experiment_description
 metadata['LA9_session3']['keywords'] = keywords
 metadata['LA9_session3']['experimenter'] = experimenter
@@ -144,17 +161,18 @@ metadata['LA9_session4']['path_to_data'] = path_to_data
 metadata['LA9_session4']['session_description'] = session_description
 metadata['LA9_session4']['session_start_time'] = datetime(2022, 3, 23, 14, 6, 13, tzinfo=tz.gettz('US/Pacific')).isoformat()
 metadata['LA9_session4']['subject_id'] = 'LA9'
-metadata['LA9_session4']['subject_age'] = 'U'
+metadata['LA9_session4']['Mouse_ID'] = '5285'
+metadata['LA9_session4']['subject_age'] = 'P106D'
 metadata['LA9_session4']['subject_description'] = 'mouse 3'
 metadata['LA9_session4']['subject_species'] = subject_species
-metadata['LA9_session4']['subject_sex'] = 'U'
+metadata['LA9_session4']['subject_strain'] = subject_strain
+metadata['LA9_session4']['subject_sex'] = 'M'
 metadata['LA9_session4']['experiment_description'] = experiment_description
 metadata['LA9_session4']['keywords'] = keywords
 metadata['LA9_session4']['experimenter'] = experimenter
 metadata['LA9_session4']['lab'] = lab
 metadata['LA9_session4']['institution'] = institution              
 metadata['LA9_session4']['related_publications'] = related_publications
-
 
 
 # LA9_SESSION5
@@ -166,17 +184,18 @@ metadata['LA9_session5']['path_to_data'] = path_to_data
 metadata['LA9_session5']['session_description'] = session_description
 metadata['LA9_session5']['session_start_time'] = datetime(2022, 3, 24, 14, 7, 22, tzinfo=tz.gettz('US/Pacific')).isoformat()
 metadata['LA9_session5']['subject_id'] = 'LA9'
-metadata['LA9_session5']['subject_age'] = 'U'
+metadata['LA9_session5']['Mouse_ID'] = '5285'
+metadata['LA9_session5']['subject_age'] = 'P107D'
 metadata['LA9_session5']['subject_description'] = 'mouse 3'
 metadata['LA9_session5']['subject_species'] = subject_species
-metadata['LA9_session5']['subject_sex'] = 'U'
+metadata['LA9_session5']['subject_strain'] = subject_strain
+metadata['LA9_session5']['subject_sex'] = 'M'
 metadata['LA9_session5']['experiment_description'] = experiment_description
 metadata['LA9_session5']['keywords'] = keywords
 metadata['LA9_session5']['experimenter'] = experimenter
 metadata['LA9_session5']['lab'] = lab
 metadata['LA9_session5']['institution'] = institution              
 metadata['LA9_session5']['related_publications'] = related_publications
-
 
 # LA11_SESSION1
 metadata['LA11_session1'] = {}
@@ -187,10 +206,12 @@ metadata['LA11_session1']['path_to_data'] = path_to_data
 metadata['LA11_session1']['session_description'] = session_description
 metadata['LA11_session1']['session_start_time'] = datetime(2022, 5, 12, 13, 36, 28, tzinfo=tz.gettz('US/Pacific')).isoformat()
 metadata['LA11_session1']['subject_id'] = 'LA11'
-metadata['LA11_session1']['subject_age'] = 'U'
+metadata['LA11_session1']['Mouse_ID'] = '5543'
+metadata['LA11_session1']['subject_age'] = 'P79D'
 metadata['LA11_session1']['subject_description'] = 'mouse 4'
 metadata['LA11_session1']['subject_species'] = subject_species
-metadata['LA11_session1']['subject_sex'] = 'U'
+metadata['LA11_session1']['subject_strain'] = subject_strain
+metadata['LA11_session1']['subject_sex'] = 'M'
 metadata['LA11_session1']['experiment_description'] = experiment_description
 metadata['LA11_session1']['keywords'] = keywords
 metadata['LA11_session1']['experimenter'] = experimenter
@@ -209,10 +230,12 @@ metadata['LA11_session2']['path_to_data'] = path_to_data
 metadata['LA11_session2']['session_description'] = session_description
 metadata['LA11_session2']['session_start_time'] = datetime(2022, 5, 13, 14, 00, 39, tzinfo=tz.gettz('US/Pacific')).isoformat()
 metadata['LA11_session2']['subject_id'] = 'LA11'
-metadata['LA11_session2']['subject_age'] = 'U'
+metadata['LA11_session2']['Mouse_ID'] = '5543'
+metadata['LA11_session2']['subject_age'] = 'P80D'
 metadata['LA11_session2']['subject_description'] = 'mouse 4'
 metadata['LA11_session2']['subject_species'] = subject_species
-metadata['LA11_session2']['subject_sex'] = 'U'
+metadata['LA11_session2']['subject_strain'] = subject_strain
+metadata['LA11_session2']['subject_sex'] = 'M'
 metadata['LA11_session2']['experiment_description'] = experiment_description
 metadata['LA11_session2']['keywords'] = keywords
 metadata['LA11_session2']['experimenter'] = experimenter
@@ -231,10 +254,12 @@ metadata['LA11_session3']['path_to_data'] = path_to_data
 metadata['LA11_session3']['session_description'] = session_description
 metadata['LA11_session3']['session_start_time'] = datetime(2022, 5, 14, 15, 4, 29, tzinfo=tz.gettz('US/Pacific')).isoformat()
 metadata['LA11_session3']['subject_id'] = 'LA11'
-metadata['LA11_session3']['subject_age'] = 'U'
+metadata['LA11_session3']['Mouse_ID'] = '5543'
+metadata['LA11_session3']['subject_age'] = 'P81D'
 metadata['LA11_session3']['subject_description'] = 'mouse 4'
 metadata['LA11_session3']['subject_species'] = subject_species
-metadata['LA11_session3']['subject_sex'] = 'U'
+metadata['LA11_session3']['subject_strain'] = subject_strain
+metadata['LA11_session3']['subject_sex'] = 'M'
 metadata['LA11_session3']['experiment_description'] = experiment_description
 metadata['LA11_session3']['keywords'] = keywords
 metadata['LA11_session3']['experimenter'] = experimenter
@@ -253,10 +278,12 @@ metadata['LA11_session4']['path_to_data'] = path_to_data
 metadata['LA11_session4']['session_description'] = session_description
 metadata['LA11_session4']['session_start_time'] = datetime(2022, 5, 15, 13, 27, 58, tzinfo=tz.gettz('US/Pacific')).isoformat()
 metadata['LA11_session4']['subject_id'] = 'LA11'
-metadata['LA11_session4']['subject_age'] = 'U'
+metadata['LA11_session4']['Mouse_ID'] = '5543'
+metadata['LA11_session4']['subject_age'] = 'P82D'
 metadata['LA11_session4']['subject_description'] = 'mouse 4'
 metadata['LA11_session4']['subject_species'] = subject_species
-metadata['LA11_session4']['subject_sex'] = 'U'
+metadata['LA11_session4 ']['subject_strain'] = subject_strain
+metadata['LA11_session4']['subject_sex'] = 'M'
 metadata['LA11_session4']['experiment_description'] = experiment_description
 metadata['LA11_session4']['keywords'] = keywords
 metadata['LA11_session4']['experimenter'] = experimenter
@@ -274,10 +301,12 @@ metadata['LA12_session1']['path_to_data'] = path_to_data
 metadata['LA12_session1']['session_description'] = session_description
 metadata['LA12_session1']['session_start_time'] = datetime(2022, 5, 24, 13, 4, 14, tzinfo=tz.gettz('US/Pacific')).isoformat()
 metadata['LA12_session1']['subject_id'] = 'LA12'
-metadata['LA12_session1']['subject_age'] = 'U'
+metadata['LA12_session1']['Mouse_ID'] = '5547'
+metadata['LA12_session1']['subject_age'] = 'P91D'
 metadata['LA12_session1']['subject_description'] = 'mouse 5'
 metadata['LA12_session1']['subject_species'] = subject_species
-metadata['LA12_session1']['subject_sex'] = 'U'
+metadata['LA12_session1']['subject_strain'] = subject_strain
+metadata['LA12_session1']['subject_sex'] = 'F'
 metadata['LA12_session1']['experiment_description'] = experiment_description
 metadata['LA12_session1']['keywords'] = keywords
 metadata['LA12_session1']['experimenter'] = experimenter
@@ -295,10 +324,12 @@ metadata['LA12_session2']['path_to_data'] = path_to_data
 metadata['LA12_session2']['session_description'] = session_description
 metadata['LA12_session2']['session_start_time'] = datetime(2022, 5, 25, 13, 32, 39, tzinfo=tz.gettz('US/Pacific')).isoformat()
 metadata['LA12_session2']['subject_id'] = 'LA12'
-metadata['LA12_session2']['subject_age'] = 'U'
+metadata['LA12_session2']['Mouse_ID'] = '5547'
+metadata['LA12_session2']['subject_age'] = 'P92D'
 metadata['LA12_session2']['subject_description'] = 'mouse 5'
 metadata['LA12_session2']['subject_species'] = subject_species
-metadata['LA12_session2']['subject_sex'] = 'U'
+metadata['LA12_session2']['subject_strain'] = subject_strain
+metadata['LA12_session2']['subject_sex'] = 'F'
 metadata['LA12_session2']['experiment_description'] = experiment_description
 metadata['LA12_session2']['keywords'] = keywords
 metadata['LA12_session2']['experimenter'] = experimenter
@@ -317,10 +348,12 @@ metadata['LA12_session3']['path_to_data'] = path_to_data
 metadata['LA12_session3']['session_description'] = session_description
 metadata['LA12_session3']['session_start_time'] = datetime(2022, 5, 26, 13, 11, 10, tzinfo=tz.gettz('US/Pacific')).isoformat()
 metadata['LA12_session3']['subject_id'] = 'LA12'
-metadata['LA12_session3']['subject_age'] = 'U'
+metadata['LA12_session3']['Mouse_ID'] = '5547'
+metadata['LA12_session3']['subject_age'] = 'P93D'
 metadata['LA12_session3']['subject_description'] = 'mouse 5'
 metadata['LA12_session3']['subject_species'] = subject_species
-metadata['LA12_session3']['subject_sex'] = 'U'
+metadata['LA12_session3']['subject_strain'] = subject_strain
+metadata['LA12_session3']['subject_sex'] = 'F'
 metadata['LA12_session3']['experiment_description'] = experiment_description
 metadata['LA12_session3']['keywords'] = keywords
 metadata['LA12_session3']['experimenter'] = experimenter
@@ -339,10 +372,12 @@ metadata['LA12_session4']['path_to_data'] = path_to_data
 metadata['LA12_session4']['session_description'] = session_description
 metadata['LA12_session4']['session_start_time'] = datetime(2022, 5, 27, 13, 18, 6, tzinfo=tz.gettz('US/Pacific')).isoformat()
 metadata['LA12_session4']['subject_id'] = 'LA12'
-metadata['LA12_session4']['subject_age'] = 'U'
+metadata['LA12_session4']['Mouse_ID'] = '5547'
+metadata['LA12_session4']['subject_age'] = 'P94D'
 metadata['LA12_session4']['subject_description'] = 'mouse 5'
 metadata['LA12_session4']['subject_species'] = subject_species
-metadata['LA12_session4']['subject_sex'] = 'U'
+metadata['LA12_session4']['subject_strain'] = subject_strain
+metadata['LA12_session4']['subject_sex'] = 'F'
 metadata['LA12_session4']['experiment_description'] = experiment_description
 metadata['LA12_session4']['keywords'] = keywords
 metadata['LA12_session4']['experimenter'] = experimenter
